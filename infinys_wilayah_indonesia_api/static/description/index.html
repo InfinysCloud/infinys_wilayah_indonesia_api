@@ -1,0 +1,873 @@
+<div class="container my-4">
+  <hr class="my-4" />
+  <section class="container-fluid py-4 mb-5" style="background-color: #f6f6f6">
+    <div class="row justify-content-center">
+      <div class="col-md-12 text-center">
+        <a target="_blank" href="https://www.infinyscloud.com/">
+          <h2 class="fw-bold" style="font-size: 35px; color: #0b0025">
+            API Wilayah Indonesia
+          </h2>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="alert alert-info">
+        <i class="fa fa-info-circle"></i> <b>About the Module</b>
+      </div>
+      <p class="fs-6 px-2">
+        This module provides a RESTful API to access geographical and
+        administrative data for all regions in Indonesia, from provinces,
+        cities/regencies, districts, to sub-districts/villages. The main purpose
+        of this API is to provide Indonesian region data that is
+        <strong> free, easily accessible, and secure with an API key, </strong>
+        so it can be used by developers for various application needs.
+      </p>
+    </div>
+  </section>
+
+  <section class="row justify-content-center py-4 mt-4">
+    <div class="col-md-10">
+      <div class="alert alert-info">
+        <i class="fa fa-cogs"></i> <b>Setup</b>
+      </div>
+      <p class="fs-6 px-2">
+        To use this module, you need to set up the API key in the system
+        parameters.
+      </p>
+      <ol>
+        <li>
+          Navigate to
+          <b>Settings > Technical > Parameters > System Parameters</b>.
+          <img
+            src="desc_img1.png"
+            alt="System Parameters Menu"
+            class="img-fluid img-thumbnail mt-2"
+          />
+        </li>
+        <li class="mt-3">
+          Create a new parameter with the following values:
+          <ul>
+            <li><b>Key:</b> <code>wilayah.api.key</code></li>
+            <li>
+              <b>Value:</b> A secure, random string (e.g.,
+              <code>your-very-secret-and-long-api-key-12345</code>)
+            </li>
+          </ul>
+          <img
+            src="desc_img2.png"
+            alt="API Key Table"
+            class="img-fluid img-thumbnail mt-2"
+          />
+        </li>
+        <li class="mt-3">Save the parameter.</li>
+        <li class="mt-3">
+          When making requests to the API, include the API key in the
+          <code>X-API-Key</code> header. For example:
+          <pre class="bg-dark text-white p-2 rounded"><code>curl -H "X-API-Key: your-very-secret-and-long-api-key-12345" http://your-odoo-instance/api/provinsi</code></pre>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="row justify-content-center py-4 mt-2">
+    <div class="col-md-10">
+      <div class="alert alert-info mt-4">
+        <i class="fa fa-database"></i> <b>Import Data</b>
+      </div>
+      <p class="fs-6 px-2">
+        Before using the API, you need to import the geographical data into your
+        Odoo instance. The data is provided in CSV format and must be imported
+        in a specific order to maintain data integrity and relationships.
+      </p>
+      <ol>
+        <li>
+          <b>Import Provinces (<code>data_provinsi.csv</code>):</b>
+          <p>
+            Navigate to the "Provinsi" menu (e.g., through your custom menu or
+            by searching for "Provinsi" in the global search).
+          </p>
+          <p>Click on <b>Actions > Import records</b>.</p>
+          <p>
+            Upload <code>data_provinsi.csv</code>. Ensure the following
+            mappings:
+          </p>
+          <ul>
+            <li>
+              CSV column <code>id</code> maps to Odoo field
+              <b><code>External ID</code></b>
+            </li>
+            <li>
+              CSV column <code>name</code> maps to Odoo field
+              <b><code>Name Provinsi</code></b>
+            </li>
+            <li>
+              CSV column <code>code</code> maps to Odoo field
+              <b><code>Kode Provinsi</code></b>
+            </li>
+          </ul>
+          <img
+            src="desc_import_img1.png"
+            alt="Import Provinces Step"
+            class="img-fluid img-thumbnail mt-2"
+          />
+        </li>
+        <li class="mt-3">
+          <b>Import Cities/Regencies (<code>data_kota.csv</code>):</b>
+          <p>Navigate to the "Kota/Kabupaten" menu.</p>
+          <p>Click on <b>Actions > Import records</b>.</p>
+          <p>
+            Upload <code>data_kota.csv</code>. Ensure the following mappings:
+          </p>
+          <ul>
+            <li>
+              CSV column <code>id</code> maps to Odoo field
+              <b><code>External ID</code></b>
+            </li>
+            <li>
+              CSV column <code>name</code> maps to Odoo field
+              <b><code>Nama Kota</code></b>
+            </li>
+            <li>
+              CSV column <code>code</code> maps to Odoo field
+              <b><code>Kode Kota</code></b>
+            </li>
+            <li>
+              CSV column <code>provinsi_id/id</code> maps to Odoo field
+              <b><code>Provinsi/External ID</code></b>
+            </li>
+          </ul>
+          <img
+            src="desc_import_img2.png"
+            alt="Import Cities Step"
+            class="img-fluid img-thumbnail mt-2"
+          />
+        </li>
+        <li class="mt-3">
+          <b>Import Sub-Districts (<code>data_kecamatan.csv</code>):</b>
+          <p>Navigate to the "Kecamatan" menu.</p>
+          <p>Click on <b>Actions > Import records</b>.</p>
+          <p>
+            Upload <code>data_kecamatan.csv</code>. Ensure the following
+            mappings:
+          </p>
+          <ul>
+            <li>
+              CSV column <code>id</code> maps to Odoo field
+              <b><code>External ID</code></b>
+            </li>
+            <li>
+              CSV column <code>name</code> maps to Odoo field
+              <b><code>Nama Kecamatan</code></b>
+            </li>
+            <li>
+              CSV column <code>code</code> maps to Odoo field
+              <b><code>Kode Kecamatan</code></b>
+            </li>
+            <li>
+              CSV column <code>kota_id/id</code> maps to Odoo field
+              <b><code>Kota/External ID</code></b>
+            </li>
+          </ul>
+          <img
+            src="desc_import_img3.png"
+            alt="Import Sub-Districts Step"
+            class="img-fluid img-thumbnail mt-2"
+          />
+        </li>
+        <li class="mt-3">
+          <b>Import Villages (<code>data_desa.csv</code>):</b>
+          <p>Navigate to the "Kelurahan/Desa" menu.</p>
+          <p>Click on <b>Actions > Import records</b>.</p>
+          <p>
+            Upload <code>data_desa.csv</code>. Ensure the following mappings:
+          </p>
+          <ul>
+            <li>
+              CSV column <code>id</code> maps to Odoo field
+              <b><code>External ID</code></b>
+            </li>
+            <li>
+              CSV column <code>name</code> maps to Odoo field
+              <b><code>Nama Kelurahan</code></b>
+            </li>
+            <li>
+              CSV column <code>code</code> maps to Odoo field
+              <b><code>Kode Kelurahan</code></b>
+            </li>
+            <li>
+              CSV column <code>kecamatan_id/id</code> maps to Odoo field
+              <b><code>Kecamatan/External ID</code></b>
+            </li>
+            <li>
+              CSV column <code>postal_code</code> maps to Odoo field
+              <b><code>Kode Pos</code></b>
+            </li>
+          </ul>
+          <img
+            src="desc_import_img4.png"
+            alt="Import Villages Step"
+            class="img-fluid img-thumbnail mt-2"
+          />
+        </li>
+      </ol>
+    </div>
+  </section>
+
+      <section class="container-fluid py-4 mt-4">
+        <div class="row justify-content-center">
+          <div class="alert alert-info col-md-10">
+            <i class="fa fa-book"></i> <b>API Documentation</b>
+          </div>
+
+          <div class="col-md-10 mt-4">
+            <h3><i class="fa fa-globe mb-2"></i>Global Search</h3>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/search?q=&lt;keyword&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Performs a case-insensitive search across provinces, cities, sub-districts, and villages. 
+                  Returns a grouped list of results. Requires a query string of at least 3 characters.
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "provinsi": [
+            {
+                "code": "12",
+                "name": "SUMATERA UTARA"
+            },
+            ...
+        ],
+        "kota": [
+            {
+                "code": "1111",
+                "name": "ACEH UTARA",
+                "province_code": "11"
+            },
+            ...
+        ],
+        "kecamatan": [
+            {
+                "code": "1102021",
+                "name": "SINGKIL UTARA",
+                "city_code": "1102"
+            },
+            ...
+        ],
+        "kelurahan": [
+            {
+                "code": "1102021001",
+                "name": "GOSONG TELAGA UTARA",
+                "postal_code": "24787",
+                "district_code": "1102021"
+            },
+            ...
+        ]
+    }
+]
+            </code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-10 mt-4">
+            <h3><i class="fa fa-map-o mb-2"></i> Provinsi</h3>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/provinsi</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get a list of all provinces in Indonesia.
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": "11",
+        "name": "ACEH"
+    },
+    {
+        "code": "12",
+        "name": "SUMATERA UTARA"
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/provinsi/&lt;kode_provinsi&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">Get province detail by its code.</p>
+                <p>
+                  <strong>Example URL:</strong> <code>/api/provinsi/32</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre
+                  class="bg-dark text-white p-2 rounded"
+                ><code>               
+{
+    "code": "32",
+    "name": "JAWA BARAT"
+}
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/provinsi?name=&lt;nama_provinsi&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">Get a list of provinces filtered by name (case-insensitive, partial match).</p>
+                <p>
+                  <strong>Example URL:</strong> <code>/api/provinsi?name=jawa</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": "32",
+        "name": "JAWA BARAT"
+    },
+    {
+        "code": "33",
+        "name": "JAWA TENGAH"
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-10 mt-4">
+            <h3><i class="fa fa-building-o mb-2"></i> Kota & Kabupaten</h3>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kota</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get a list of <strong>all</strong> cities/regencies in
+                  Indonesia.
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": "1101",
+        "name": "SIMEULUE",
+        "province_code": "11"
+    },
+    {
+        "code": "1102",
+        "name": "ACEH SINGKIL",
+        "province_code": "11"
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kota?kode_provinsi=&lt;kode_provinsi&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get a list of cities/regencies filtered by province.
+                </p>
+                <p>
+                  <strong>Example URL:</strong>
+                  <code>/api/kota?kode_provinsi=32</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": "3201",
+        "name": "BOGOR",
+        "province_code": "32"
+    },
+    {
+        "code": "3202",
+        "name": "SUKABUMI",
+        "province_code": "32"
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kota/&lt;kode_kota&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get city/regency detail including its province.
+                </p>
+                <p><strong>Example URL:</strong> <code>/api/kota/3204</code></p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+{
+    "code": "3204",
+    "name": "BANDUNG",
+    "province": {
+        "code": "32",
+        "name": "JAWA BARAT"
+    }
+}
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kota?name=&lt;nama_kota&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">Get a list of cities/regencies filtered by name (case-insensitive, partial match).</p>
+                <p>
+                  <strong>Example URL:</strong> <code>/api/kota?name=bandung</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": "3217",
+        "name": "BANDUNG BARAT",
+        "province_code": "32"
+    },
+    {
+        "code": "3273",
+        "name": "BANDUNG",
+        "province_code": "32"
+    }
+]
+            </code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-10 mt-4">
+            <h3><i class="fa fa-sitemap mb-2"></i> Kecamatan</h3>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kecamatan</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get a list of <strong>all</strong> districts in Indonesia.
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": "1101010",
+        "name": "TEUPAH SELATAN",
+        "city_code": "1101"
+    },
+    {
+        "code": "1101020",
+        "name": "SIMEULUE TIMUR",
+        "city_code": "1101"
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kecamatan?kode_kota=&lt;kode_kota&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get a list of districts filtered by city/regency.
+                </p>
+                <p>
+                  <strong>Example URL:</strong>
+                  <code>/api/kecamatan?kode_kota=3204</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[ 
+    {
+        "code": 3204010,
+        "name": "CIWIDEY",
+        "city_code": "3204"
+    },
+    {
+        "code": 3204011,
+        "name": "RANCABALI",
+        "city_code": "3204"
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kecamatan/&lt;kode_kecamatan&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get district detail including its city and province data.
+                </p>
+                <p>
+                  <strong>Example URL:</strong>
+                  <code>/api/kecamatan/3204050</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+{
+    "code": "3204050",
+    "name": "KERTASARI",
+    "city": {
+        "code": "3204",
+        "name": "BANDUNG"
+    },
+    "province": {
+        "code": "32",
+        "name": "JAWA BARAT"
+    }
+}
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kecamatan?name=&lt;nama_kecamatan&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">Get a list of districts filtered by name (case-insensitive, partial match).</p>
+                <p>
+                  <strong>Example URL:</strong> <code>/api/kecamatan?name=cicalengka</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[ 
+    {
+        "code": 3204100,
+        "name": "CICALENGKA",
+        "city_code": "3204"
+    }
+]
+            </code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-10 mt-4">
+            <h3><i class="fa fa-home mb-2"></i> Kelurahan & Desa</h3>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kelurahan</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get a list of <strong>all</strong> sub-districts/villages in
+                  Indonesia.
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": 1101010001,
+        "name": "LATIUNG",
+        "postal_code": "23895,23898",
+        "district_code": 1101010
+    },
+    {
+        "code": 1101010002,
+        "name": "LABUHAN BAJAU",
+        "postal_code": "23895,23898",
+        "district_code": 1101010
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kelurahan?kode_kecamatan=&lt;kode_kecamatan&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get a list of sub-districts/villages filtered by district.
+                </p>
+                <p>
+                  <strong>Example URL:</strong>
+                  <code>/api/kelurahan?kode_kecamatan=3204050</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": 3204050001,
+        "name": "NEGLAWANGI",
+        "postal_code": "40386",
+        "district_code": 3204050
+    },
+    {
+        "code": 3204050002,
+        "name": "SANTOSA",
+        "postal_code": "40386",
+        "district_code": 3204050
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kelurahan/&lt;kode_kelurahan&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Get detail of a sub-district/village including its upper level
+                  hierarchy.
+                </p>
+                <p>
+                  <strong>Example URL:</strong>
+                  <code>/api/kelurahan/3204050001</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+{
+    "code": 3204050001,
+    "name": "NEGLAWANGI",
+    "postal_code": "40386",
+    "sub_district": {
+        "code": 3204050,
+        "name": "KERTASARI"
+    },
+    "city": {
+        "code": 3204,
+        "name": "BANDUNG"
+    },
+    "province": {
+        "code": 32,
+        "name": "JAWA BARAT"
+    }
+}
+            </code></pre>
+              </div>
+            </div>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kelurahan?name=&lt;nama_kelurahan&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">Get a list of sub-districts/villages filtered by name (case-insensitive, partial match).</p>
+                <p>
+                  <strong>Example URL:</strong> <code>/api/kelurahan?name=cilandak</code>
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": "3171020001",
+        "name": "CILANDAK TIMUR",
+        "postal_code": "12560",
+        "district_code": "3171020"
+    },
+    ...
+]
+            </code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-10 mt-4">
+            <h3><i class="fa fa-map-marker mb-2"></i>Kode Pos</h3>
+            <div class="card bg-light mb-3">
+              <div class="card-header">
+                <strong
+                  ><span class="badge badge-primary">GET</span>
+                  /api/kodepos/&lt;kode_pos&gt;</strong
+                >
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Returns a list of all regions (villages/kelurahan) that match the given postal code.
+                </p>
+                <strong>Example Response:</strong>
+                <pre class="bg-dark text-white p-2 rounded"><code>
+[
+    {
+        "code": "3273080003",
+        "name": "BATUNUNGGAL",
+        "postal_code": "40266",
+        "kecamatan": {
+            "code": "3273080",
+            "name": "BANDUNG KIDUL"
+        },
+        "kota": {
+            "code": "3273",
+            "name": "BANDUNG"
+        },
+        "provinsi": {
+            "code": "32",
+            "name": "JAWA BARAT"
+        }
+    }
+]
+            </code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="container-fluid py-4 mt-2"
+        style="background-color: #ffffff"
+      >
+        <div class="row justify-content-center">
+          <div class="col-md-12 text-center">
+            <a target="_blank" href="https://www.infinyscloud.com/">
+              <h2 class="fw-bold mt-3" style="font-size: 35px; color: #000000">
+                ABOUT INFINYS
+              </h2>
+            </a>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-10">
+            <p class="fs-2">
+              Infinyscloud is a trusted leader in Indonesia's cloud computing
+              industry, delivering secure, scalable, and reliable cloud
+              solutions that help businesses grow and stay competitive. With
+              comprehensive services covering cloud consulting, strategy,
+              migration, and optimization, we guide businesses through every
+              step of their cloud journey making adoption smooth and effective.
+              <br /><br />
+              Our commitment to innovation and quality is reflected in our ISO
+              certifications and strong partnerships with global platforms like
+              AWS and Odoo. Known for our responsive customer service and deep
+              expertise in cloud technologies, Infinyscloud is here to support
+              your business with solutions you can depend on.
+              <br /><br />
+              Infinys System Indonesia is an Odoo Partner, a company that has 
+              been officially recognized by Odoo to sell, implement, consult, 
+              and provide technical support related to the use of Odoo. Odoo 
+              has a strict partnership system to ensure that its partners are 
+              able to provide high-quality services in accordance with Odoo's 
+              global standards. These partners also have access to exclusive 
+              resources, training, and support from Odoo to ensure the success 
+              of implementations in every project. Since we also operate in 
+              the field of cloud computing, we also provide Odoo Cloud Hosting 
+              services.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container-fluid py-4 mt-5">
+        <div class="row justify-content-center align-items-center">
+          <div
+            class="col-md-10 d-flex flex-wrap align-items-center justify-content-center"
+          >
+            <p
+              class="fw-bold mb-3 mb-md-0"
+              style="font-size: 36px; color: #0b0025"
+            >
+              Don't just read about it:
+            </p>
+            <a
+              href="https://odoo-ce.atisicloud.com/web/login"
+              target="_blank"
+              class="btn btn-primary ms-md-4 align-self-center"
+              style="font-size: 20px; padding: 6px 14px"
+            >
+              <i class="fa fa-rocket me-2"></i> Try the Module
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="container-fluid py-4 mt-5"
+        style="background-color: #f6f6f6"
+      >
+        <div class="row justify-content-center">
+          <div class="col-md-12 text-center">
+            <h3 class="fw-bold my-3" style="font-size: 35px; color: #0b0025">
+              Help and Support
+            </h3>
+            <div class="oe_slogan">
+              <a
+                class="btn btn-primary btn-lg mt8"
+                style="font-size: 20px; padding: 6px 14px"
+                href="mailto:sales@isi.co.id"
+              >
+                <i class="fa fa-envelope"></i> Contact Support
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>

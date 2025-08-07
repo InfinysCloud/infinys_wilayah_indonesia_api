@@ -1,0 +1,142 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_wilayah_provinsi_list">
+            <field name="name">wilayah.provinsi.list</field>
+            <field name="model">wilayah.provinsi</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="code"/>
+                </list>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_wilayah_provinsi_form">
+            <field name="name">wilayah.provinsi.form</field>
+            <field name="model">wilayah.provinsi</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_wilayah_kota_list">
+            <field name="name">wilayah.kota.list</field>
+            <field name="model">wilayah.kota</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="provinsi_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_wilayah_kota_form">
+            <field name="name">wilayah.kota.form</field>
+            <field name="model">wilayah.kota</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="provinsi_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_wilayah_kecamatan_list">
+            <field name="name">wilayah.kecamatan.list</field>
+            <field name="model">wilayah.kecamatan</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="kota_id"/>
+                </list>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_wilayah_kecamatan_form">
+            <field name="name">wilayah.kecamatan.form</field>
+            <field name="model">wilayah.kecamatan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="kota_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_wilayah_kelurahan_list">
+            <field name="name">wilayah.kelurahan.list</field>
+            <field name="model">wilayah.kelurahan</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="kecamatan_id"/>
+                    <field name="postal_code"/>
+                </list>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_wilayah_kelurahan_form">
+            <field name="name">wilayah.kelurahan.form</field>
+            <field name="model">wilayah.kelurahan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="kecamatan_id"/>
+                            <field name="postal_code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_wilayah_provinsi">
+            <field name="name">Provinsi</field>
+            <field name="res_model">wilayah.provinsi</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_wilayah_kota">
+            <field name="name">Kota/Kabupaten</field>
+            <field name="res_model">wilayah.kota</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_wilayah_kecamatan">
+            <field name="name">Kecamatan</field>
+            <field name="res_model">wilayah.kecamatan</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_wilayah_kelurahan">
+            <field name="name">Kelurahan/Desa</field>
+            <field name="res_model">wilayah.kelurahan</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_wilayah_root" name="Wilayah Indonesia" web_icon="infinys_wilayah_indonesia_api,static/description/icon.png" sequence="10"/>
+        <menuitem id="menu_wilayah_provinsi" name="Provinsi" parent="menu_wilayah_root" action="action_wilayah_provinsi" sequence="10"/>
+        <menuitem id="menu_wilayah_kota" name="Kota/Kabupaten" parent="menu_wilayah_root" action="action_wilayah_kota" sequence="20"/>
+        <menuitem id="menu_wilayah_kecamatan" name="Kecamatan" parent="menu_wilayah_root" action="action_wilayah_kecamatan" sequence="30"/>
+        <menuitem id="menu_wilayah_kelurahan" name="Kelurahan/Desa" parent="menu_wilayah_root" action="action_wilayah_kelurahan" sequence="40"/>
+    </data>
+</odoo>

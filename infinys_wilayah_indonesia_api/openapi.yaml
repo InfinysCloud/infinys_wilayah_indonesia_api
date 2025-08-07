@@ -1,0 +1,389 @@
+openapi: 3.0.0
+info:
+  title: Infinys Wilayah Indonesia API
+  version: 1.0.0
+  description: RESTful API to access Indonesian administrative regional data (Provinces, Cities/Regencies, Sub-districts, and Villages). This API requires an API key for authentication.
+servers:
+  - url: https://sirius.atisicloud.com/api
+    description: Production Server
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /provinsi:
+    get:
+      summary: Get All Provinces
+      description: Returns a list of all provinces in Indonesia. Can be filtered by name.
+      tags:
+        - Provinsi
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Province name to filter results (case-insensitive, partial match).
+          example: "jawa"
+      responses:
+        "200":
+          description: Successfully retrieved the list of provinces.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code: { type: string, example: "32" }
+                    name: { type: string, example: "JAWA BARAT" }
+
+  /provinsi/{kode_provinsi}:
+    get:
+      summary: Get Province by Code
+      description: Returns details of a single province based on its code.
+      tags:
+        - Provinsi
+      parameters:
+        - name: kode_provinsi
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "32"
+      responses:
+        "200":
+          description: Successfully retrieved province data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code: { type: string, example: "32" }
+                  name: { type: string, example: "JAWA BARAT" }
+
+  /kota:
+    get:
+      summary: Get All Cities (or Filter by Province/Name)
+      description: >
+        Returns a list of all cities/regencies. 
+        Can be filtered by `kode_provinsi` and/or `name`.
+      tags:
+        - Kota & Kabupaten
+      parameters:
+        - name: kode_provinsi
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Province code to filter cities.
+          example: "32"
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          description: City name to filter results (case-insensitive, partial match).
+          example: "bandung"
+      responses:
+        "200":
+          description: Successfully retrieved the list of cities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code: { type: string, example: "3204" }
+                    name: { type: string, example: "KABUPATEN BANDUNG" }
+                    province_code: { type: string, example: "32" }
+
+  /kota/{kode_kota}:
+    get:
+      summary: Get City by Code
+      description: Returns details of a single city/regency along with its province data.
+      tags:
+        - Kota & Kabupaten
+      parameters:
+        - name: kode_kota
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3204"
+      responses:
+        "200":
+          description: Successfully retrieved city data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code: { type: string, example: "3204" }
+                  name: { type: string, example: "KABUPATEN BANDUNG" }
+                  province:
+                    type: object
+                    properties:
+                      code: { type: string, example: "32" }
+                      name: { type: string, example: "JAWA BARAT" }
+
+  /kecamatan:
+    get:
+      summary: Get All Sub-Districts (or Filter by City/Name)
+      description: >
+        Returns a list of all sub-districts. 
+        Can be filtered by `kode_kota` and/or `name`.
+      tags:
+        - Kecamatan
+      parameters:
+        - name: kode_kota
+          in: query
+          required: false
+          schema:
+            type: string
+          description: City code to filter sub-districts.
+          example: "3204"
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Sub-district name to filter results (case-insensitive, partial match).
+          example: "cicalengka"
+      responses:
+        "200":
+          description: Successfully retrieved the list of sub-districts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code: { type: string, example: "3204050" }
+                    name: { type: string, example: "CICALENGKA" }
+                    city_code: { type: string, example: "3204" }
+
+  /kecamatan/{kode_kecamatan}:
+    get:
+      summary: Get Sub-District by Code
+      description: Returns details of a single sub-district along with its city and province data.
+      tags:
+        - Kecamatan
+      parameters:
+        - name: kode_kecamatan
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3204050"
+      responses:
+        "200":
+          description: Successfully retrieved sub-district data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code: { type: string, example: "3204050" }
+                  name: { type: string, example: "CICALENGKA" }
+                  city:
+                    type: object
+                    properties:
+                      code: { type: string, example: "3204" }
+                      name: { type: string, example: "KABUPATEN BANDUNG" }
+                  province:
+                    type: object
+                    properties:
+                      code: { type: string, example: "32" }
+                      name: { type: string, example: "JAWA BARAT" }
+
+  /kelurahan:
+    get:
+      summary: Get All Villages (or Filter by Sub-District/Name)
+      description: >
+        Returns a list of all villages/urban wards. 
+        Can be filtered by `kode_kecamatan` and/or `name`.
+      tags:
+        - Kelurahan & Desa
+      parameters:
+        - name: kode_kecamatan
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Sub-district code to filter villages.
+          example: "3204050"
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Village name to filter results (case-insensitive, partial match).
+          example: "kulon"
+      responses:
+        "200":
+          description: Successfully retrieved the list of villages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code: { type: string, example: "3204050001" }
+                    name: { type: string, example: "CICALENGKA KULON" }
+                    postal_code: { type: string, example: "40395" }
+                    district_code: { type: string, example: "3204050" }
+
+  /kelurahan/{kode_kelurahan}:
+    get:
+      summary: Get Village by Code
+      description: Returns details of a single village/urban ward along with its hierarchical data.
+      tags:
+        - Kelurahan & Desa
+      parameters:
+        - name: kode_kelurahan
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "3204050001"
+      responses:
+        "200":
+          description: Successfully retrieved village data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code: { type: string, example: "3204050001" }
+                  name: { type: string, example: "CICALENGKA KULON" }
+                  postal_code: { type: string, example: "40395" }
+                  sub_district:
+                    type: object
+                    properties:
+                      code: { type: string, example: "3204050" }
+                      name: { type: string, example: "CICALENGKA" }
+                  city:
+                    type: object
+                    properties:
+                      code: { type: string, example: "3204" }
+                      name: { type: string, example: "KABUPATEN BANDUNG" }
+                  province:
+                    type: object
+                    properties:
+                      code: { type: string, example: "32" }
+                      name: { type: string, example: "JAWA BARAT" }
+
+  /search:
+    get:
+      summary: Global Search
+      description: >
+        Performs a case-insensitive search across provinces, cities, sub-districts, and villages. 
+        Returns a grouped list of results. Requires a query string of at least 3 characters.
+      tags:
+        - Global Search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query (e.g., 'utara', 'jaya'). Minimum 3 characters.
+          example: "utara"
+      responses:
+        "200":
+          description: Successfully retrieved search results.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  provinsi:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code: { type: string, example: "12" }
+                        name: { type: string, example: "SUMATERA UTARA" }
+                  kota:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code: { type: string, example: "1111" }
+                        name: { type: string, example: "ACEH UTARA" }
+                        province_code: { type: string, example: "11" }
+                  kecamatan:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code: { type: string, example: "1102021" }
+                        name: { type: string, example: "SINGKIL UTARA" }
+                        city_code: { type: string, example: "1102" }
+                  kelurahan:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code: { type: string, example: "1102021001" }
+                        name: { type: string, example: "GOSONG TELAGA UTARA" }
+                        postal_code: { type: string, example: "24787" }
+                        district_code: { type: string, example: "1102021" }
+        "400":
+          description: Bad request, e.g., query parameter is missing or too short.
+
+  /kodepos/{kode_pos}:
+    get:
+      summary: Get Regions by Postal Code
+      description: Returns a list of all regions (villages/kelurahan) that match the given postal code.
+      tags:
+        - Postal Code
+      parameters:
+        - name: kode_pos
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The 5-digit postal code to search for.
+          example: "40266"
+      responses:
+        "200":
+          description: Successfully retrieved the list of regions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code: { type: string, example: "3273080003" }
+                    name: { type: string, example: "BATUNUNGGAL" }
+                    postal_code: { type: string, example: "40266" }
+                    kecamatan:
+                      type: object
+                      properties:
+                        code: { type: string, example: "3273080" }
+                        name: { type: string, example: "BANDUNG KIDUL" }
+                    kota:
+                      type: object
+                      properties:
+                        code: { type: string, example: "3273" }
+                        name: { type: string, example: "KOTA BANDUNG" }
+                    provinsi:
+                      type: object
+                      properties:
+                        code: { type: string, example: "32" }
+                        name: { type: string, example: "JAWA BARAT" }
+        "404":
+          description: No regions found for the given postal code.
