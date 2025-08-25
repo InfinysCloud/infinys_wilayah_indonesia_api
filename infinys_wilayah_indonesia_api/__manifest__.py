@@ -14,6 +14,7 @@
     "depends": ["base"],
     # always loaded
     "data": [
+        "data/ir_config_parameter_data.xml",
         "security/ir.model.access.csv",
         "views/wilayah_views.xml",
     ],
