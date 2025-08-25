@@ -1,0 +1,8 @@
+<odoo>
+    <data noupdate="1">
+        <record id="wilayah_api_key_parameter" model="ir.config_parameter">
+            <field name="key">wilayah.api.key</field>
+            <field name="value">change_this_to_your_secret_api_key</field>
+        </record>
+    </data>
+</odoo>

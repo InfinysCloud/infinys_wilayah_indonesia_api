@@ -1,23 +1,56 @@
-<div class="container my-4">
-  <hr class="my-4" />
-  <section class="container-fluid py-4 mb-5" style="background-color: #f6f6f6">
-    <div class="row justify-content-center">
-      <div class="col-md-12 text-center">
-        <a target="_blank" href="https://www.infinyscloud.com/">
-          <h2 class="fw-bold" style="font-size: 35px; color: #0b0025">
+<div
+  style="
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  "
+>
+  <hr style="margin-top: 1.5rem; margin-bottom: 1.5rem" />
+  <section
+    style="
+      background-color: #f6f6f6;
+      width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-bottom: 3rem;
+    "
+  >
+    <div
+      style="display: flex; flex-wrap: wrap; gap: 0; justify-content: center"
+    >
+      <div style="width: 100%; text-align: center">
+        <a href="https://www.infinyscloud.com/" target="_blank">
+          <h2 style="font-size: 35px; color: #0b0025; font-weight: 700">
             API Wilayah Indonesia
           </h2>
         </a>
       </div>
     </div>
   </section>
-
-  <section class="row justify-content-center">
-    <div class="col-md-10">
-      <div class="alert alert-info">
+  <section
+    style="display: flex; flex-wrap: wrap; gap: 0; justify-content: center"
+  >
+    <div style="width: 100%">
+      <div
+        style="
+          padding: 8px;
+          border: 1px solid rgba(0, 0, 0, 0.125);
+          border-radius: 0.25rem;
+          background-color: #cff4fc;
+          color: #055160;
+        "
+      >
         <i class="fa fa-info-circle"></i> <b>About the Module</b>
       </div>
-      <p class="fs-6 px-2">
+      <p
+        style="font-size: 0.875rem; padding-left: 0.5rem; padding-right: 0.5rem"
+      >
         This module provides a RESTful API to access geographical and
         administrative data for all regions in Indonesia, from provinces,
         cities/regencies, districts, to sub-districts/villages. The main purpose
@@ -27,69 +60,141 @@
       </p>
     </div>
   </section>
-
-  <section class="row justify-content-center py-4 mt-4">
-    <div class="col-md-10">
-      <div class="alert alert-info">
+  <section
+    style="
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      justify-content: center;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-top: 1.5rem;
+    "
+  >
+    <div style="width: 100%">
+      <div
+        style="
+          padding: 8px;
+          border: 1px solid rgba(0, 0, 0, 0.125);
+          border-radius: 0.25rem;
+          background-color: #cff4fc;
+          color: #055160;
+        "
+      >
         <i class="fa fa-cogs"></i> <b>Setup</b>
       </div>
-      <p class="fs-6 px-2">
+      <p
+        style="font-size: 0.875rem; padding-left: 0.5rem; padding-right: 0.5rem"
+      >
         To use this module, you need to set up the API key in the system
-        parameters.
+        parameters. Upon installation, a default API key is created
+        automatically. It is crucial that you change this default value to a
+        secure, private key of your own.
       </p>
       <ol>
         <li>
           Navigate to
-          <b>Settings > Technical > Parameters > System Parameters</b>.
+          <b>Settings &gt; Technical &gt; Parameters &gt; System Parameters</b>.
           <img
-            src="desc_img1.png"
             alt="System Parameters Menu"
-            class="img-fluid img-thumbnail mt-2"
+            src="desc_img1.png"
+            style="
+              max-width: 100%;
+              height: auto;
+              padding: 0.25rem;
+              background-color: #fff;
+              border: 1px solid #dee2e6;
+              border-radius: 0.25rem;
+              margin-top: 0.5rem;
+            "
           />
         </li>
-        <li class="mt-3">
-          Create a new parameter with the following values:
-          <ul>
-            <li><b>Key:</b> <code>wilayah.api.key</code></li>
-            <li>
-              <b>Value:</b> A secure, random string (e.g.,
-              <code>your-very-secret-and-long-api-key-12345</code>)
-            </li>
-          </ul>
+        <li style="margin-top: 8px">
+          Find the parameter with the key <code>wilayah.api.key</code>. It will
+          have a default value like
+          <code>change_this_to_your_secret_api_key</code>.
+        </li>
+        <li style="margin-top: 8px">
+          Edit the parameter and change the <b>Value</b> to a secure, random
+          string that you generate (e.g.,
+          <code>your-very-secret-and-long-api-key-12345</code>).
           <img
-            src="desc_img2.png"
             alt="API Key Table"
-            class="img-fluid img-thumbnail mt-2"
+            src="desc_img2.png"
+            style="
+              max-width: 100%;
+              height: auto;
+              padding: 0.25rem;
+              background-color: #fff;
+              border: 1px solid #dee2e6;
+              border-radius: 0.25rem;
+              margin-top: 0.5rem;
+            "
           />
         </li>
-        <li class="mt-3">Save the parameter.</li>
-        <li class="mt-3">
-          When making requests to the API, include the API key in the
+        <li style="margin-top: 8px">Save the changes.</li>
+        <li style="margin-top: 8px">
+          When making requests to the API, include your new API key in the
           <code>X-API-Key</code> header. For example:
-          <pre class="bg-dark text-white p-2 rounded"><code>curl -H "X-API-Key: your-very-secret-and-long-api-key-12345" http://your-odoo-instance/api/provinsi</code></pre>
+          <pre
+            style="
+              background-color: #212529;
+              padding: 0.5rem;
+              border-radius: 0.25rem;
+            "
+          ><code style="color: #FFFFFF;">curl -H "X-API-Key: your-very-secret-and-long-api-key-12345" http://your-odoo-instance/api/provinsi</code></pre>
         </li>
       </ol>
     </div>
   </section>
-
-  <section class="row justify-content-center py-4 mt-2">
-    <div class="col-md-10">
-      <div class="alert alert-info mt-4">
+  <section
+    style="
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      justify-content: center;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-top: 0.5rem;
+    "
+  >
+    <div style="width: 100%">
+      <div
+        style="
+          padding: 8px;
+          border: 1px solid rgba(0, 0, 0, 0.125);
+          border-radius: 0.25rem;
+          background-color: #cff4fc;
+          color: #055160;
+          margin-top: 1.5rem;
+        "
+      >
         <i class="fa fa-database"></i> <b>Import Data</b>
       </div>
-      <p class="fs-6 px-2">
+      <p
+        style="font-size: 0.875rem; padding-left: 0.5rem; padding-right: 0.5rem"
+      >
         Before using the API, you need to import the geographical data into your
         Odoo instance. The data is provided in CSV format and must be imported
         in a specific order to maintain data integrity and relationships.
       </p>
       <ol>
         <li>
-          <b>Import Provinces (<code>data_provinsi.csv</code>):</b>
+          <b
+            >Import Provinces (<a
+              href="https://rawcdn.githack.com/InfinysCloud/infinys_wilayah_indonesia_api/refs/heads/main/infinys_wilayah_indonesia_api/data_import/data_provinsi.csv"
+              download
+              style="text-decoration: none; color: #0d6efd"
+            >
+              <i class="fa fa-download" style="margin-right: 0.5rem"></i
+              >data_provinsi.csv </a
+            >):</b
+          >
           <p>
             Navigate to the "Provinsi" menu (e.g., through your custom menu or
             by searching for "Provinsi" in the global search).
           </p>
-          <p>Click on <b>Actions > Import records</b>.</p>
+          <p>Click on <b>Actions &gt; Import records</b>.</p>
           <p>
             Upload <code>data_provinsi.csv</code>. Ensure the following
             mappings:
@@ -109,15 +214,32 @@
             </li>
           </ul>
           <img
-            src="desc_import_img1.png"
             alt="Import Provinces Step"
-            class="img-fluid img-thumbnail mt-2"
+            src="desc_import_img1.png"
+            style="
+              max-width: 100%;
+              height: auto;
+              padding: 0.25rem;
+              background-color: #fff;
+              border: 1px solid #dee2e6;
+              border-radius: 0.25rem;
+              margin-top: 0.5rem;
+            "
           />
         </li>
-        <li class="mt-3">
-          <b>Import Cities/Regencies (<code>data_kota.csv</code>):</b>
+        <li style="margin-top: 8px">
+          <b
+            >Import Cities/Regencies (<a
+              href="https://rawcdn.githack.com/InfinysCloud/infinys_wilayah_indonesia_api/refs/heads/main/infinys_wilayah_indonesia_api/data_import/data_kota.csv"
+              download
+              style="text-decoration: none; color: #0d6efd"
+            >
+              <i class="fa fa-download" style="margin-right: 0.5rem"></i
+              >data_kota.csv </a
+            >):</b
+          >
           <p>Navigate to the "Kota/Kabupaten" menu.</p>
-          <p>Click on <b>Actions > Import records</b>.</p>
+          <p>Click on <b>Actions &gt; Import records</b>.</p>
           <p>
             Upload <code>data_kota.csv</code>. Ensure the following mappings:
           </p>
@@ -140,15 +262,32 @@
             </li>
           </ul>
           <img
-            src="desc_import_img2.png"
             alt="Import Cities Step"
-            class="img-fluid img-thumbnail mt-2"
+            src="desc_import_img2.png"
+            style="
+              max-width: 100%;
+              height: auto;
+              padding: 0.25rem;
+              background-color: #fff;
+              border: 1px solid #dee2e6;
+              border-radius: 0.25rem;
+              margin-top: 0.5rem;
+            "
           />
         </li>
-        <li class="mt-3">
-          <b>Import Sub-Districts (<code>data_kecamatan.csv</code>):</b>
+        <li style="margin-top: 8px">
+          <b
+            >Import Sub-Districts (<a
+              href="https://rawcdn.githack.com/InfinysCloud/infinys_wilayah_indonesia_api/refs/heads/main/infinys_wilayah_indonesia_api/data_import/data_kecamatan.csv"
+              download
+              style="text-decoration: none; color: #0d6efd"
+            >
+              <i class="fa fa-download" style="margin-right: 0.5rem"></i
+              >data_kecamatan.csv </a
+            >):</b
+          >
           <p>Navigate to the "Kecamatan" menu.</p>
-          <p>Click on <b>Actions > Import records</b>.</p>
+          <p>Click on <b>Actions &gt; Import records</b>.</p>
           <p>
             Upload <code>data_kecamatan.csv</code>. Ensure the following
             mappings:
@@ -172,17 +311,35 @@
             </li>
           </ul>
           <img
-            src="desc_import_img3.png"
             alt="Import Sub-Districts Step"
-            class="img-fluid img-thumbnail mt-2"
+            src="desc_import_img3.png"
+            style="
+              max-width: 100%;
+              height: auto;
+              padding: 0.25rem;
+              background-color: #fff;
+              border: 1px solid #dee2e6;
+              border-radius: 0.25rem;
+              margin-top: 0.5rem;
+            "
           />
         </li>
-        <li class="mt-3">
-          <b>Import Villages (<code>data_desa.csv</code>):</b>
+        <li style="margin-top: 8px">
+          <b
+            >Import Villages (<a
+              href="https://rawcdn.githack.com/InfinysCloud/infinys_wilayah_indonesia_api/refs/heads/main/infinys_wilayah_indonesia_api/data_import/data_kelurahan.csv"
+              download
+              style="text-decoration: none; color: #0d6efd"
+            >
+              <i class="fa fa-download" style="margin-right: 0.5rem"></i
+              >data_kelurahan.csv </a
+            >):</b
+          >
           <p>Navigate to the "Kelurahan/Desa" menu.</p>
-          <p>Click on <b>Actions > Import records</b>.</p>
+          <p>Click on <b>Actions &gt; Import records</b>.</p>
           <p>
-            Upload <code>data_desa.csv</code>. Ensure the following mappings:
+            Upload <code>data_kelurahan.csv</code>. Ensure the following
+            mappings:
           </p>
           <ul>
             <li>
@@ -207,37 +364,98 @@
             </li>
           </ul>
           <img
-            src="desc_import_img4.png"
             alt="Import Villages Step"
-            class="img-fluid img-thumbnail mt-2"
+            src="desc_import_img4.png"
+            style="
+              max-width: 100%;
+              height: auto;
+              padding: 0.25rem;
+              background-color: #fff;
+              border: 1px solid #dee2e6;
+              border-radius: 0.25rem;
+              margin-top: 0.5rem;
+            "
           />
         </li>
       </ol>
     </div>
   </section>
-
-      <section class="container-fluid py-4 mt-4">
-        <div class="row justify-content-center">
-          <div class="alert alert-info col-md-10">
-            <i class="fa fa-book"></i> <b>API Documentation</b>
+  <section
+    style="
+      width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-top: 1.5rem;
+    "
+  >
+    <div
+      style="display: flex; flex-wrap: wrap; gap: 0; justify-content: center"
+    >
+      <div
+        style="
+          padding: 8px;
+          border: 1px solid rgba(0, 0, 0, 0.125);
+          border-radius: 0.25rem;
+          background-color: #cff4fc;
+          color: #055160;
+          width: 100%;
+        "
+      >
+        <i class="fa fa-book"></i> <b>API Documentation</b>
+      </div>
+      <div style="width: 100%; margin-top: 1.5rem">
+        <h3>
+          <i class="fa fa-globe mb-2" style="margin-bottom: 0.5rem"></i> Global
+          Search
+        </h3>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/search?q=&lt;keyword&gt;</strong
+            >
           </div>
-
-          <div class="col-md-10 mt-4">
-            <h3><i class="fa fa-globe mb-2"></i>Global Search</h3>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/search?q=&lt;keyword&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Performs a case-insensitive search across provinces, cities, sub-districts, and villages. 
-                  Returns a grouped list of results. Requires a query string of at least 3 characters.
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Performs a case-insensitive search across provinces, cities,
+              sub-districts, and villages. Returns a grouped list of results.
+              Requires a query string of at least 3 characters.
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "provinsi": [
@@ -275,25 +493,56 @@
     }
 ]
             </code></pre>
-              </div>
-            </div>
           </div>
-
-          <div class="col-md-10 mt-4">
-            <h3><i class="fa fa-map-o mb-2"></i> Provinsi</h3>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/provinsi</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get a list of all provinces in Indonesia.
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+        </div>
+      </div>
+      <div style="width: 100%; margin-top: 1.5rem">
+        <h3>
+          <i class="fa fa-map-o mb-2" style="margin-bottom: 0.5rem"></i>
+          Provinsi
+        </h3>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/provinsi</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">Get a list of all provinces in Indonesia.</p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": "11",
@@ -306,45 +555,107 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/provinsi/&lt;kode_provinsi&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">Get province detail by its code.</p>
-                <p>
-                  <strong>Example URL:</strong> <code>/api/provinsi/32</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre
-                  class="bg-dark text-white p-2 rounded"
-                ><code>               
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/provinsi/&lt;kode_provinsi&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">Get province detail by its code.</p>
+            <p><strong>Example URL:</strong> <code>/api/provinsi/32</code></p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                color: #ffffff;
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code>               
 {
     "code": "32",
     "name": "JAWA BARAT"
 }
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/provinsi?name=&lt;nama_provinsi&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">Get a list of provinces filtered by name (case-insensitive, partial match).</p>
-                <p>
-                  <strong>Example URL:</strong> <code>/api/provinsi?name=jawa</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/provinsi?name=&lt;nama_provinsi&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of provinces filtered by name (case-insensitive,
+              partial match).
+            </p>
+            <p>
+              <strong>Example URL:</strong> <code>/api/provinsi?name=jawa</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": "32",
@@ -357,26 +668,58 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
           </div>
-
-          <div class="col-md-10 mt-4">
-            <h3><i class="fa fa-building-o mb-2"></i> Kota & Kabupaten</h3>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kota</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get a list of <strong>all</strong> cities/regencies in
-                  Indonesia.
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+        </div>
+      </div>
+      <div style="width: 100%; margin-top: 1.5rem">
+        <h3>
+          <i class="fa fa-building-o mb-2" style="margin-bottom: 0.5rem"></i>
+          Kota &amp; Kabupaten
+        </h3>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kota</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of <strong>all</strong> cities/regencies in Indonesia.
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": "1101",
@@ -391,25 +734,56 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kota?kode_provinsi=&lt;kode_provinsi&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get a list of cities/regencies filtered by province.
-                </p>
-                <p>
-                  <strong>Example URL:</strong>
-                  <code>/api/kota?kode_provinsi=32</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kota?kode_provinsi=&lt;kode_provinsi&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of cities/regencies filtered by province.
+            </p>
+            <p>
+              <strong>Example URL:</strong>
+              <code>/api/kota?kode_provinsi=32</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": "3201",
@@ -424,22 +798,53 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kota/&lt;kode_kota&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get city/regency detail including its province.
-                </p>
-                <p><strong>Example URL:</strong> <code>/api/kota/3204</code></p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kota/&lt;kode_kota&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get city/regency detail including its province.
+            </p>
+            <p><strong>Example URL:</strong> <code>/api/kota/3204</code></p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 {
     "code": "3204",
     "name": "BANDUNG",
@@ -449,22 +854,56 @@
     }
 }
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kota?name=&lt;nama_kota&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">Get a list of cities/regencies filtered by name (case-insensitive, partial match).</p>
-                <p>
-                  <strong>Example URL:</strong> <code>/api/kota?name=bandung</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kota?name=&lt;nama_kota&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of cities/regencies filtered by name (case-insensitive,
+              partial match).
+            </p>
+            <p>
+              <strong>Example URL:</strong> <code>/api/kota?name=bandung</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": "3217",
@@ -478,25 +917,58 @@
     }
 ]
             </code></pre>
-              </div>
-            </div>
           </div>
-
-          <div class="col-md-10 mt-4">
-            <h3><i class="fa fa-sitemap mb-2"></i> Kecamatan</h3>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kecamatan</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get a list of <strong>all</strong> districts in Indonesia.
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+        </div>
+      </div>
+      <div style="width: 100%; margin-top: 1.5rem">
+        <h3>
+          <i class="fa fa-sitemap mb-2" style="margin-bottom: 0.5rem"></i>
+          Kecamatan
+        </h3>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kecamatan</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of <strong>all</strong> districts in Indonesia.
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": "1101010",
@@ -511,25 +983,56 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kecamatan?kode_kota=&lt;kode_kota&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get a list of districts filtered by city/regency.
-                </p>
-                <p>
-                  <strong>Example URL:</strong>
-                  <code>/api/kecamatan?kode_kota=3204</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kecamatan?kode_kota=&lt;kode_kota&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of districts filtered by city/regency.
+            </p>
+            <p>
+              <strong>Example URL:</strong>
+              <code>/api/kecamatan?kode_kota=3204</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [ 
     {
         "code": 3204010,
@@ -544,25 +1047,56 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kecamatan/&lt;kode_kecamatan&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get district detail including its city and province data.
-                </p>
-                <p>
-                  <strong>Example URL:</strong>
-                  <code>/api/kecamatan/3204050</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kecamatan/&lt;kode_kecamatan&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get district detail including its city and province data.
+            </p>
+            <p>
+              <strong>Example URL:</strong>
+              <code>/api/kecamatan/3204050</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 {
     "code": "3204050",
     "name": "KERTASARI",
@@ -576,22 +1110,57 @@
     }
 }
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kecamatan?name=&lt;nama_kecamatan&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">Get a list of districts filtered by name (case-insensitive, partial match).</p>
-                <p>
-                  <strong>Example URL:</strong> <code>/api/kecamatan?name=cicalengka</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kecamatan?name=&lt;nama_kecamatan&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of districts filtered by name (case-insensitive,
+              partial match).
+            </p>
+            <p>
+              <strong>Example URL:</strong>
+              <code>/api/kecamatan?name=cicalengka</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [ 
     {
         "code": 3204100,
@@ -600,26 +1169,59 @@
     }
 ]
             </code></pre>
-              </div>
-            </div>
           </div>
-
-          <div class="col-md-10 mt-4">
-            <h3><i class="fa fa-home mb-2"></i> Kelurahan & Desa</h3>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kelurahan</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get a list of <strong>all</strong> sub-districts/villages in
-                  Indonesia.
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+        </div>
+      </div>
+      <div style="width: 100%; margin-top: 1.5rem">
+        <h3>
+          <i class="fa fa-home mb-2" style="margin-bottom: 0.5rem"></i>
+          Kelurahan &amp; Desa
+        </h3>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kelurahan</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of <strong>all</strong> sub-districts/villages in
+              Indonesia.
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": 1101010001,
@@ -636,25 +1238,56 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kelurahan?kode_kecamatan=&lt;kode_kecamatan&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get a list of sub-districts/villages filtered by district.
-                </p>
-                <p>
-                  <strong>Example URL:</strong>
-                  <code>/api/kelurahan?kode_kecamatan=3204050</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kelurahan?kode_kecamatan=&lt;kode_kecamatan&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of sub-districts/villages filtered by district.
+            </p>
+            <p>
+              <strong>Example URL:</strong>
+              <code>/api/kelurahan?kode_kecamatan=3204050</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": 3204050001,
@@ -671,26 +1304,57 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kelurahan/&lt;kode_kelurahan&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Get detail of a sub-district/village including its upper level
-                  hierarchy.
-                </p>
-                <p>
-                  <strong>Example URL:</strong>
-                  <code>/api/kelurahan/3204050001</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kelurahan/&lt;kode_kelurahan&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get detail of a sub-district/village including its upper level
+              hierarchy.
+            </p>
+            <p>
+              <strong>Example URL:</strong>
+              <code>/api/kelurahan/3204050001</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 {
     "code": 3204050001,
     "name": "NEGLAWANGI",
@@ -709,22 +1373,57 @@
     }
 }
             </code></pre>
-              </div>
-            </div>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kelurahan?name=&lt;nama_kelurahan&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">Get a list of sub-districts/villages filtered by name (case-insensitive, partial match).</p>
-                <p>
-                  <strong>Example URL:</strong> <code>/api/kelurahan?name=cilandak</code>
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+          </div>
+        </div>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kelurahan?name=&lt;nama_kelurahan&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Get a list of sub-districts/villages filtered by name
+              (case-insensitive, partial match).
+            </p>
+            <p>
+              <strong>Example URL:</strong>
+              <code>/api/kelurahan?name=cilandak</code>
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": "3171020001",
@@ -735,25 +1434,59 @@
     ...
 ]
             </code></pre>
-              </div>
-            </div>
           </div>
-
-          <div class="col-md-10 mt-4">
-            <h3><i class="fa fa-map-marker mb-2"></i>Kode Pos</h3>
-            <div class="card bg-light mb-3">
-              <div class="card-header">
-                <strong
-                  ><span class="badge badge-primary">GET</span>
-                  /api/kodepos/&lt;kode_pos&gt;</strong
-                >
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Returns a list of all regions (villages/kelurahan) that match the given postal code.
-                </p>
-                <strong>Example Response:</strong>
-                <pre class="bg-dark text-white p-2 rounded"><code>
+        </div>
+      </div>
+      <div style="width: 100%; margin-top: 1.5rem">
+        <h3>
+          <i class="fa fa-map-marker mb-2" style="margin-bottom: 0.5rem"></i>
+          Kode Pos
+        </h3>
+        <div
+          style="
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              padding: 0.5rem 8px;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: rgba(0, 0, 0, 0.03);
+              font-weight: 600;
+            "
+          >
+            <strong
+              ><span
+                style="
+                  display: inline-block;
+                  padding: 0.35em 0.65em;
+                  border-radius: 0.25rem;
+                  font-size: 0.75em;
+                  font-weight: 600;
+                  background-color: #714b67;
+                  color: #fff;
+                "
+                >GET</span
+              >
+              /api/kodepos/&lt;kode_pos&gt;</strong
+            >
+          </div>
+          <div style="padding: 8px">
+            <p class="card-text">
+              Returns a list of all regions (villages/kelurahan) that match the
+              given postal code.
+            </p>
+            <strong>Example Response:</strong>
+            <pre
+              style="
+                background-color: #212529;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+              "
+            ><code style="color: #FFFFFF;">
 [
     {
         "code": "3273080003",
@@ -774,100 +1507,180 @@
     }
 ]
             </code></pre>
-              </div>
-            </div>
           </div>
         </div>
-      </section>
-
-      <section
-        class="container-fluid py-4 mt-2"
-        style="background-color: #ffffff"
-      >
-        <div class="row justify-content-center">
-          <div class="col-md-12 text-center">
-            <a target="_blank" href="https://www.infinyscloud.com/">
-              <h2 class="fw-bold mt-3" style="font-size: 35px; color: #000000">
-                ABOUT INFINYS
-              </h2>
-            </a>
-          </div>
-        </div>
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-10">
-            <p class="fs-2">
-              Infinyscloud is a trusted leader in Indonesia's cloud computing
-              industry, delivering secure, scalable, and reliable cloud
-              solutions that help businesses grow and stay competitive. With
-              comprehensive services covering cloud consulting, strategy,
-              migration, and optimization, we guide businesses through every
-              step of their cloud journey making adoption smooth and effective.
-              <br /><br />
-              Our commitment to innovation and quality is reflected in our ISO
-              certifications and strong partnerships with global platforms like
-              AWS and Odoo. Known for our responsive customer service and deep
-              expertise in cloud technologies, Infinyscloud is here to support
-              your business with solutions you can depend on.
-              <br /><br />
-              Infinys System Indonesia is an Odoo Partner, a company that has 
-              been officially recognized by Odoo to sell, implement, consult, 
-              and provide technical support related to the use of Odoo. Odoo 
-              has a strict partnership system to ensure that its partners are 
-              able to provide high-quality services in accordance with Odoo's 
-              global standards. These partners also have access to exclusive 
-              resources, training, and support from Odoo to ensure the success 
-              of implementations in every project. Since we also operate in 
-              the field of cloud computing, we also provide Odoo Cloud Hosting 
-              services.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="container-fluid py-4 mt-5">
-        <div class="row justify-content-center align-items-center">
-          <div
-            class="col-md-10 d-flex flex-wrap align-items-center justify-content-center"
+      </div>
+    </div>
+  </section>
+  <section
+    style="
+      background-color: #ffffff;
+      width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-top: 0.5rem;
+    "
+  >
+    <div
+      style="display: flex; flex-wrap: wrap; gap: 0; justify-content: center"
+    >
+      <div style="width: 100%; text-align: center">
+        <a href="https://www.infinyscloud.com/" target="_blank">
+          <h2
+            style="
+              font-size: 35px;
+              color: #000000;
+              font-weight: 700;
+              margin-top: 8px;
+            "
           >
-            <p
-              class="fw-bold mb-3 mb-md-0"
-              style="font-size: 36px; color: #0b0025"
-            >
-              Don't just read about it:
-            </p>
-            <a
-              href="https://odoo-ce.atisicloud.com/web/login"
-              target="_blank"
-              class="btn btn-primary ms-md-4 align-self-center"
-              style="font-size: 20px; padding: 6px 14px"
-            >
-              <i class="fa fa-rocket me-2"></i> Try the Module
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section
-        class="container-fluid py-4 mt-5"
-        style="background-color: #f6f6f6"
+            ABOUT INFINYS
+          </h2>
+        </a>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: center;
+        margin-top: 3rem;
+      "
+    >
+      <div style="width: 100%">
+        <p>
+          Infinyscloud is a trusted leader in Indonesia's cloud computing
+          industry, delivering secure, scalable, and reliable cloud solutions
+          that help businesses grow and stay competitive. With comprehensive
+          services covering cloud consulting, strategy, migration, and
+          optimization, we guide businesses through every step of their cloud
+          journey making adoption smooth and effective.
+          <br /><br />
+          Our commitment to innovation and quality is reflected in our ISO
+          certifications and strong partnerships with global platforms like AWS
+          and Odoo. Known for our responsive customer service and deep expertise
+          in cloud technologies, Infinyscloud is here to support your business
+          with solutions you can depend on.
+          <br /><br />
+          Infinys System Indonesia is an Odoo Partner, a company that has been
+          officially recognized by Odoo to sell, implement, consult, and provide
+          technical support related to the use of Odoo. Odoo has a strict
+          partnership system to ensure that its partners are able to provide
+          high-quality services in accordance with Odoo's global standards.
+          These partners also have access to exclusive resources, training, and
+          support from Odoo to ensure the success of implementations in every
+          project. Since we also operate in the field of cloud computing, we
+          also provide Odoo Cloud Hosting services.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section
+    style="
+      width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-top: 3rem;
+    "
+  >
+    <div
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div
+        style="
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+        "
       >
-        <div class="row justify-content-center">
-          <div class="col-md-12 text-center">
-            <h3 class="fw-bold my-3" style="font-size: 35px; color: #0b0025">
-              Help and Support
-            </h3>
-            <div class="oe_slogan">
-              <a
-                class="btn btn-primary btn-lg mt8"
-                style="font-size: 20px; padding: 6px 14px"
-                href="mailto:sales@isi.co.id"
-              >
-                <i class="fa fa-envelope"></i> Contact Support
-              </a>
-            </div>
-          </div>
+        <p
+          class="mb-md-0"
+          style="
+            font-size: 36px;
+            color: #0b0025;
+            font-weight: 700;
+            margin-bottom: 8px;
+          "
+        >
+          Don't just read about it:
+        </p>
+        <span
+          style="
+            font-size: 20px;
+            padding: 0.375rem 0.75rem;
+            display: inline-block;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            background-color: #714b67;
+            color: #fff;
+            margin-left: 1.5rem;
+            align-self: center;
+          "
+        >
+          <a
+            href="https://odoo-ce.atisicloud.com/web/login"
+            style="color: #f6f6f6"
+            target="_blank"
+          >
+            <i class="fa fa-rocket" style="margin-right: 0.5rem"></i> Try the
+            Module
+          </a>
+        </span>
+      </div>
+    </div>
+  </section>
+  <section
+    style="
+      background-color: #f6f6f6;
+      width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-top: 3rem;
+    "
+  >
+    <div
+      style="display: flex; flex-wrap: wrap; gap: 0; justify-content: center"
+    >
+      <div style="width: 100%; text-align: center">
+        <h3
+          class="my-3"
+          style="font-size: 35px; color: #0b0025; font-weight: 700"
+        >
+          Help and Support
+        </h3>
+        <div class="oe_slogan">
+          <a
+            class="mt8"
+            href="mailto:sales@isi.co.id"
+            style="
+              font-size: 1.25rem;
+              padding: 0.5rem 8px;
+              display: inline-block;
+              border-radius: 0.25rem;
+              text-decoration: none;
+              background-color: #714b67;
+              color: #fff;
+            "
+          >
+            <i class="fa fa-envelope"></i> Contact Support
+          </a>
         </div>
-      </section>
+      </div>
     </div>
   </section>
 </div>
